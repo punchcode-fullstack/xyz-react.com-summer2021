@@ -18,5 +18,10 @@ describe("Product", () => {
     expect(product).toHaveTextContent(product1.name);
     expect(product).toHaveTextContent(String(product1.price));
   });
-  it.todo("has an add to cart button");
+  it("has an add to cart button", () => {
+      const product1 = products[0];
+      const ui = render(<Product {...product1} />)
+      const btn = ui.getByRole("button")
+      expect(btn).toHaveTextContent('Add to Cart')
+  });
 });
