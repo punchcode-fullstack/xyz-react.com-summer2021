@@ -8,3 +8,11 @@ test('renders', () => {
   expect(companyName).toBeInTheDocument();
 });
 
+describe('App', () => {
+  it('shows the product list', () => {
+    const ui = render(<App />)
+    const productList = ui.getByTestId('ProductList')
+    expect(productList).toBeInTheDocument()
+  })
+})
+
