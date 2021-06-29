@@ -9,10 +9,10 @@ test('renders', () => {
 });
 
 describe('App', () => {
-  it('shows the product list', () => {
+  it('shows the Shop by default', () => {
     const ui = render(<App />)
-    const productList = ui.getByTestId('ProductList')
-    expect(productList).toBeInTheDocument()
+    const shop = ui.getByTestId('Shop')
+    expect(shop).toBeInTheDocument()
   })
 })
 
