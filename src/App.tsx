@@ -1,16 +1,20 @@
-import Header from './components/Header'
-import ProductList from './components/ProductList'
+import { BrowserRouter as Router } from "react-router-dom";
 
-import './App.scss';
+import Header from "./components/Header";
+import ProductList from "./components/ProductList";
 
-import products from './data/products.json'
+import "./App.scss";
+
+import products from "./data/products.json";
 
 function App() {
   return (
-    <div className="App">
-      XYZ Corporation
-      <ProductList products={products} />
-    </div>
+    <Router>
+      <div className="App">
+        <Header />
+        <ProductList products={products} />
+      </div>
+    </Router>
   );
 }
 
