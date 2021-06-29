@@ -8,7 +8,12 @@ describe("ProductList", () => {
     expect(typeof ProductList).toBe("function");
   });
   it('has class of "ProductList"', () => {
-  const ui = render(<ProductList />);
-  expect(ui.getByTestId("ProductList")).toHaveClass("ProductList");
-});
+    const ui = render(<ProductList />);
+    expect(ui.getByTestId("ProductList")).toHaveClass("ProductList");
+  });
+  it('renders a list of products', () => {
+      const ui = render(<ProductList products={products} />)
+      const productElements = ui.getAllByTestId('Product')
+      expect(productElements.length).toEqual(products.length)
+  })
 });
