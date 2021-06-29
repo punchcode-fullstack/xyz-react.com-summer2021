@@ -1,18 +1,16 @@
 import { BrowserRouter as Router } from "react-router-dom";
 
 import Header from "./components/Header";
-import ProductList from "./components/ProductList";
+import Shop from "./components/Shop";
 
 import "./App.scss";
-
-import products from "./data/products.json";
 
 function App() {
   return (
     <Router>
       <div className="App">
         <Header />
-        <ProductList products={products} />
+        <Shop />
       </div>
     </Router>
   );
