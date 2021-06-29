@@ -22,4 +22,8 @@ describe('Header', () => {
         const ui = renderUi()
         expect(ui.getByText('XYZ Corporation').closest('a')).toHaveAttribute('href', '/')
     })
+    it('has a link to the cart', () => {
+        const ui = renderUi()
+        expect(ui.getByText('Add to Cart').closest('a')).toHaveAttribute('href', '/cart')
+    })
 })
