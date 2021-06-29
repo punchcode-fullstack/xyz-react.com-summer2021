@@ -3,6 +3,7 @@ function Product({id, name, price, thumbnail}) {
       <div>{id}</div>
       <div>{name}</div>
       <div>{price}</div>
+      <button>Add to Cart</button>
   </div>;
 }
 
