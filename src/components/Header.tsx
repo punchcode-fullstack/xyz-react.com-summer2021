@@ -4,7 +4,7 @@ function Header() {
   return (
     <header data-testid="Header" className="Header">
       <Link to="/">XYZ Corporation</Link>
-      <Link to="/cart">Add to Cart</Link>
+      <Link to="/cart">Cart</Link>
     </header>
   );
 }

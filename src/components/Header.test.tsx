@@ -24,6 +24,6 @@ describe('Header', () => {
     })
     it('has a link to the cart', () => {
         const ui = renderUi()
-        expect(ui.getByText('Add to Cart').closest('a')).toHaveAttribute('href', '/cart')
+        expect(ui.getByText('Cart').closest('a')).toHaveAttribute('href', '/cart')
     })
 })
