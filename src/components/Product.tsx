@@ -1,5 +1,5 @@
 function Product() {
-  return <div></div>;
+  return <div data-testid="Product" className="Product"></div>;
 }
 
 export { Product };
