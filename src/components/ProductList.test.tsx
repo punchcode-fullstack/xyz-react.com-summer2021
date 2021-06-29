@@ -7,4 +7,8 @@ describe("ProductList", () => {
   it("exists", () => {
     expect(typeof ProductList).toBe("function");
   });
+  it('has class of "ProductList"', () => {
+  const ui = render(<ProductList />);
+  expect(ui.getByTestId("ProductList")).toHaveClass("ProductList");
+});
 });
