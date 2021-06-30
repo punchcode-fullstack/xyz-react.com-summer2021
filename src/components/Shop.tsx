@@ -1,9 +1,9 @@
 import ProductList from './ProductList'
 
-import {CartItemType} from './CartItem.types'
+import {Product as ProductType} from './Product.types'
 
 interface ShopType {
-  addItemToCart: (item:CartItemType)=>void;
+  addItemToCart: (item:ProductType)=>void;
 }
 
 function Shop({addItemToCart}: ShopType) {

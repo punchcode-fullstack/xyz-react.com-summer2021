@@ -15,7 +15,7 @@ function Cart({ cartItems = [] }: CartType) {
         }).format(
           cartItems?.reduce(
             (subtotal: number, item: CartItemType) =>
-              subtotal + parseFloat(String(item.price)),
+              subtotal + (parseFloat(String(item.price)) * item.qty),
             0
           )
         )}

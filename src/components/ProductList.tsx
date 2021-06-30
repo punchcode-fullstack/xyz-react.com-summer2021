@@ -1,9 +1,9 @@
-import type {CartItemType} from './CartItem.types'
+import type {Product as ProductType} from './Product.types'
 import Product from "./Product";
 import Api from '../api'
 
 interface ProductListIface {
-  addItemToCart: (item:CartItemType) => void;
+  addItemToCart: (item:ProductType) => void;
 }
 function ProductList({ addItemToCart }:ProductListIface) {
   return (
