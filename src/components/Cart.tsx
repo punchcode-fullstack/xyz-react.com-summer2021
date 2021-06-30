@@ -3,9 +3,11 @@ import CartItem from "./CartItem";
 
 interface CartType {
   cartItems: CartItemType[];
+  incrementCartItemQty?: (id: string | number) => void
+  decrementCartItemQty?: (id: string | number) => void
 }
 
-function Cart({ cartItems = [] }: CartType) {
+function Cart({ cartItems = [], incrementCartItemQty, decrementCartItemQty }: CartType) {
   return (
     <div data-testid="Cart" className="Cart">
       <div aria-label="subtotal">
@@ -23,7 +25,12 @@ function Cart({ cartItems = [] }: CartType) {
       <div aria-label="item count">{cartItems?.length ?? 0}</div>
       <div className="cart-items">
         {cartItems?.map((item) => (
-          <CartItem key={item.id} {...item} />
+          <CartItem 
+            key={item.id}
+            {...item}
+            incrementCartItemQty={incrementCartItemQty}
+            decrementCartItemQty={decrementCartItemQty}
+          />
         ))}
       </div>
     </div>
@@ -31,3 +38,4 @@ function Cart({ cartItems = [] }: CartType) {
 }
 export { Cart };
 export default Cart;
+

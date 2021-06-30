@@ -33,13 +33,38 @@ function App() {
         : appendNewItem(prevCartItems);
     });
   }
+  function incrementCartItemQty(itemId: number | string) {
+    setCartItems((prev) => {
+      return prev.map((i) => {
+        if (i.id === itemId) {
+          return { ...i, qty: i.qty + 1 };
+        }
+        return i;
+      });
+    });
+  }
+  function decrementCartItemQty(itemId: number | string) {
+    setCartItems((prev) => {
+      return prev.map((i) => {
+        if (i.id === itemId) {
+          return { ...i, qty: i.qty - 1 > 0 ? i.qty - 1 : 1 };
+        }
+        return i;
+      });
+    });
+  }
+
   return (
     <Router>
       <div className="App">
         <Header />
         <Switch>
           <Route path="/cart">
-            <Cart cartItems={cartItems} />
+            <Cart
+              cartItems={cartItems}
+              incrementCartItemQty={incrementCartItemQty}
+              decrementCartItemQty={decrementCartItemQty}
+            />
           </Route>
           <Route path="/">
             <Shop addItemToCart={addItemToCart} />
