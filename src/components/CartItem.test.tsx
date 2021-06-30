@@ -59,17 +59,38 @@ describe("CartItem", () => {
 
     const decrementBtn = ui.getByLabelText("decrement quantity");
     decrementBtn.click();
-    
+
     const cartItems = ui.getAllByTestId("CartItem");
     const firstCartItem = cartItems[0];
     expect(firstCartItem).toHaveTextContent(product1.name);
     expect(firstCartItem).toHaveTextContent(String(product1.price));
     expect(ui.getByLabelText("quantity")).toHaveTextContent("qty: 1");
-    
+
     // cannot decrement below 1
     decrementBtn.click();
     decrementBtn.click();
     decrementBtn.click();
     expect(ui.getByLabelText("quantity")).toHaveTextContent("qty: 1");
+  });
+  it("has a remove button that removes the item from the cart", () => {
+    const product1 = products[0];
+
+    const ui = render(<App />);
+    // make sure that we're looking at the shop
+    const shopLink = ui.getByText("XYZ Corporation");
+    shopLink.click();
+    const addToCartButtons = ui.getAllByRole("button");
+    const btnAddToCart = addToCartButtons[0]; // should be product1
+    const cartLink = ui.getByText("Cart");
+    btnAddToCart.click(); // add to cart once
+
+    // visit the cart
+    cartLink.click();
+
+    const removeBtn = ui.getByLabelText("remove from cart");
+    removeBtn.click();
+
+    const cartItems = ui.queryAllByTestId("CartItem");
+    expect(cartItems.length).toBe(0);
   });
 });
