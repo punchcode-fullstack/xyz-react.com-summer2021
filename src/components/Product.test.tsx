@@ -55,5 +55,35 @@ describe("Product", () => {
     const firstCartItem = cartItems[0]
     expect(firstCartItem).toHaveTextContent(product1.name)
     expect(firstCartItem).toHaveTextContent(String(product1.price))
+    expect(firstCartItem).toHaveTextContent("qty: 1")
   });
+  it("keeps track of item qty, subtotal, and recalculates the cart when adding new items", () => {
+    const product1 = products[0];
+    const ui = render(<App />);
+
+    // make sure that we're looking at the shop
+    const shopLink = ui.getByText("XYZ Corporation");
+    shopLink.click();
+
+    const addToCartButtons = ui.getAllByRole("button");
+    const btnAddToCart = addToCartButtons[0]; // should be product1
+    const cartLink = ui.getByText("Cart");
+
+    btnAddToCart.click(); // add to cart once
+    btnAddToCart.click(); // add to cart twice
+    cartLink.click(); // visit cart
+
+    const cartItems = ui.getAllByTestId("CartItem");
+    expect(cartItems.length).toBe(1);
+    
+    // should be only 1 item in the cart
+    const firstCartItem = cartItems[0]
+    expect(firstCartItem).toHaveTextContent(product1.name)
+    expect(firstCartItem).toHaveTextContent(String(product1.price))
+    expect(ui.getByLabelText("item count")).toHaveTextContent('1');
+    
+    // the item should be in there twice
+    expect(firstCartItem).toHaveTextContent("qty: 2")
+    expect(ui.getByLabelText("subtotal")).toHaveTextContent(String(product1.price * 2));
+  })
 });
