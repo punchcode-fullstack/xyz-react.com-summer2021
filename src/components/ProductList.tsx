@@ -1,9 +1,19 @@
+import type {CartItemType} from './CartItem.types'
 import Product from "./Product";
-function ProductList({ products }:{products: any}) {
+import Api from '../api'
+
+interface ProductListIface {
+  addItemToCart: (item:CartItemType) => void;
+}
+function ProductList({ addItemToCart }:ProductListIface) {
   return (
     <div data-testid="ProductList" className="ProductList">
-      {products?.map((product: any) => (
-        <Product key={product.id} {...product} />
+      {Api.getProducts()?.map((product: any) => (
+        <Product
+          key={product.id}
+          product={product}
+          addItemToCart={addItemToCart}
+        />
       ))}
     </div>
   );
@@ -11,4 +21,3 @@ function ProductList({ products }:{products: any}) {
 
 export { ProductList };
 export default ProductList;
- 

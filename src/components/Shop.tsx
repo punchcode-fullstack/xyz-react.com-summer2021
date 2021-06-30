@@ -1,10 +1,14 @@
 import ProductList from './ProductList'
 
-import products from '../data/products.json'
+import {CartItemType} from './CartItem.types'
 
-function Shop() {
+interface ShopType {
+  addItemToCart: (item:CartItemType)=>void;
+}
+
+function Shop({addItemToCart}: ShopType) {
   return <div data-testid="Shop" className="Shop">
-      <ProductList products={products} />
+      <ProductList addItemToCart={addItemToCart} />
   </div>;
 }
 export { Shop };
