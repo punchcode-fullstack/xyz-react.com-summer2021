@@ -3,6 +3,7 @@ import { CartItemType } from "./CartItem.types";
 type CartItemProps = CartItemType & {
   incrementCartItemQty?: (id: string | number) => void;
   decrementCartItemQty?: (id: string | number) => void;
+  removeFromCart?: (id: string | number) => void;
 };
 function CartItem({
   id,
@@ -12,6 +13,7 @@ function CartItem({
   thumbnail,
   decrementCartItemQty,
   incrementCartItemQty,
+  removeFromCart,
 }: CartItemProps) {
   return (
     <div data-testid="CartItem" className="CartItem">
@@ -33,12 +35,20 @@ function CartItem({
         onClick={() => {
           if (incrementCartItemQty) {
             incrementCartItemQty(id);
-          }else{
-            console.log('missing func')
           }
         }}
       >
         +
+      </button>
+      <button
+        aria-label="remove from cart"
+        onClick={() => {
+          if (removeFromCart) {
+            removeFromCart(id);
+          }
+        }}
+      >
+        X
       </button>
     </div>
   );

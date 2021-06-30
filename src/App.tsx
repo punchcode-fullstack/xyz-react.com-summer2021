@@ -53,6 +53,9 @@ function App() {
       });
     });
   }
+  function removeFromCart(itemId: number | string) {
+    setCartItems((prev) => prev.filter((i) => i.id !== itemId));
+  }
 
   return (
     <Router>
@@ -64,6 +67,7 @@ function App() {
               cartItems={cartItems}
               incrementCartItemQty={incrementCartItemQty}
               decrementCartItemQty={decrementCartItemQty}
+              removeFromCart={removeFromCart}
             />
           </Route>
           <Route path="/">

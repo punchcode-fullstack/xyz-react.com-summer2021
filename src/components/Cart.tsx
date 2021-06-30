@@ -5,9 +5,10 @@ interface CartType {
   cartItems: CartItemType[];
   incrementCartItemQty?: (id: string | number) => void
   decrementCartItemQty?: (id: string | number) => void
+  removeFromCart?: (id: string | number) => void
 }
 
-function Cart({ cartItems = [], incrementCartItemQty, decrementCartItemQty }: CartType) {
+function Cart({ cartItems = [], incrementCartItemQty, decrementCartItemQty, removeFromCart }: CartType) {
   return (
     <div data-testid="Cart" className="Cart">
       <div aria-label="subtotal">
@@ -30,6 +31,7 @@ function Cart({ cartItems = [], incrementCartItemQty, decrementCartItemQty }: Ca
             {...item}
             incrementCartItemQty={incrementCartItemQty}
             decrementCartItemQty={decrementCartItemQty}
+            removeFromCart={removeFromCart}
           />
         ))}
       </div>
