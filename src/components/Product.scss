@@ -1,0 +1,30 @@
+.Product {
+  border: 0.5px solid lightgray;
+  width: min-content;
+  margin: 2rem;
+  button {
+    background: orangered;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 20px;
+    &:hover {
+      background: rgb(211, 56, 0);
+    }
+  }
+  .info {
+    position: relative;
+    display: flex;
+    padding: 1rem;
+    justify-content: space-between;
+    align-items: center;
+    div:last-child {
+      text-align: center;
+    }
+    .price {
+      font-weight: bold;
+      font-size: 36px;
+      margin-bottom: 12px;
+    }
+  }
+}
