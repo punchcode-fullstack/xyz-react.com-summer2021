@@ -9,7 +9,7 @@ interface ShopType {
 function Shop({ addItemToCart }: ShopType) {
   return (
     <div data-testid='Shop' className='Shop'>
-      <SplashPage />
+      {/* <SplashPage /> */}
       <ProductList addItemToCart={addItemToCart} />
     </div>
   )
