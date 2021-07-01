@@ -10,14 +10,23 @@
   position: relative;
   p {
     columns: 2;
-    font-size: 2rem;
+    font-size: 1.5rem;
     width: 60%;
     margin: 0 auto;
+
+    &::first-line {
+      font-size: 3rem;
+    }
   }
   h1 {
-    position: absolute;
-    left: 10%;
-    top: 20%;
-    font-size: 6rem;
+    font-size: 20rem;
+    line-height: 18rem;
+    font-family: 'Staatliches';
+    text-shadow: 8px 9px 11px rgba(0, 0, 0, 0.72);
+    transition: text-shadow 1s;
+
+    &:hover {
+      text-shadow: -8px 9px 11px rgba(0, 0, 0, 0.72);
+    }
   }
 }

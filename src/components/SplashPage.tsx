@@ -3,6 +3,7 @@ import './SplashPage.scss'
 function SplashPage() {
   return (
     <div className='SplashPage'>
+      <div></div>
       <h1>Welcome</h1>
       <p>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est suscipit
