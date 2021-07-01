@@ -12,11 +12,19 @@
   a {
     font-size: 2rem;
     position: relative;
+    text-decoration: none;
 
+    &:visited {
+      color: white;
+    }
     &.logo {
       font-size: 4rem;
       font-family: 'Staatliches';
       text-shadow: 4px 4px 11px rgba(0, 0, 0, 0.72);
+      transition: text-shadow 1s;
+    }
+    &.logo:hover {
+      text-shadow: -4px 4px 11px rgba(0, 0, 0, 0.72);
     }
     &.cart {
       display: flex;
