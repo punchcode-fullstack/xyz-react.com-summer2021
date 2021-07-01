@@ -1,11 +1,7 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
-import { Switch, Route, Link } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 
 import SplashPage from './SplashPage'
 import Nav from './Nav'
-
-// import './Header.scss'
 
 function Header() {
   return (

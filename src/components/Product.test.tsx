@@ -1,15 +1,16 @@
-import { render, screen } from '@testing-library/react'
+import { render } from "@testing-library/react";
 
 import App from '../App'
 import Product from './Product'
 import products from '../data/products.json'
 
-const mockAddItemToCart = jest.fn()
 
-describe('Product', () => {
-  function renderUi() {
+describe("Product", () => {
+  function renderUi(){
     return render(
-      <Product product={products[0]} addItemToCart={mockAddItemToCart} />
+      <Product
+        product={products[0]}
+      />
     )
   }
 
@@ -23,19 +24,15 @@ describe('Product', () => {
   it('has all required fields', () => {
     const product1 = products[0]
     const ui = renderUi()
-    const product = ui.getByTestId('Product')
-    expect(product).toHaveTextContent(product1.name)
-    expect(product).toHaveTextContent(String(product1.price))
-  })
-  it('has an add to cart button', () => {
-    const product1 = products[0]
+    const product = ui.getByTestId("Product");
+    expect(product).toHaveTextContent(product1.name);
+    expect(product).toHaveTextContent(String(product1.price));
+  });
+  it("has an add to cart button", () => {
     const ui = renderUi()
-    const btn = ui.getByRole('button')
-    expect(btn).toHaveTextContent('Add to Cart')
-    btn.click()
-    expect(mockAddItemToCart).toHaveBeenCalledTimes(1)
-    expect(mockAddItemToCart).toHaveBeenCalledWith(product1)
-  })
+    const btn = ui.getByRole("button");
+    expect(btn).toHaveTextContent("Add to Cart");
+  });
   it("adds a new item to the cart when 'Add to Cart' is clicked", () => {
     const product1 = products[0]
     const ui = render(<App />)

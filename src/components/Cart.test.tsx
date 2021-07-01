@@ -10,11 +10,17 @@ describe("Cart", () => {
     expect(typeof Cart).toBe("function");
   });
   it("has class Cart", () => {
-    const ui = render(<Cart cartItems={[]} />);
+    const ui = render(<App />);
+    const shopLink = ui.getByText("Cart");
+    shopLink.click()
+
     expect(ui.getByTestId("Cart")).toHaveClass("Cart");
   });
   it("starts empty", () => {
-    const ui = render(<Cart cartItems={[]} />);
+    const ui = render(<App />);
+    const cartLink = ui.getByText("Cart");
+    cartLink.click(); // visit cart
+
     expect(ui.queryAllByTestId("CartItem").length).toBe(0);
     expect(ui.getByLabelText("subtotal")).toHaveTextContent("0.00");
     expect(ui.getByLabelText("item count")).toHaveTextContent('0');
@@ -22,6 +28,10 @@ describe("Cart", () => {
   it("updates the number of items in the cart when a new item is added", () => {
     const product1 = products[0];
     const ui = render(<App />);
+    
+    const shopLink = ui.getByText("XYZ Corporation");
+    shopLink.click()
+
     const addToCartButtons = ui.getAllByRole("button");
     const btnAddToCart = addToCartButtons[0]; // should be product1
     const cartLink = ui.getByText("Cart");

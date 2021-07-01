@@ -1,16 +1,11 @@
 import ProductList from './ProductList'
 import SplashPage from './SplashPage'
-import { Product as ProductType } from './Product.types'
 
-interface ShopType {
-  addItemToCart: (item: ProductType) => void
-}
-
-function Shop({ addItemToCart }: ShopType) {
+function Shop() {
   return (
     <div data-testid='Shop' className='Shop'>
       {/* <SplashPage /> */}
-      <ProductList addItemToCart={addItemToCart} />
+      <ProductList />
     </div>
   )
 }

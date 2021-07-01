@@ -2,15 +2,15 @@ import type { Product as ProductType } from './Product.types'
 import './Product.scss'
 import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons'
+import useCart from '../hooks/useCart'
 interface ProductIface {
   product: ProductType
-  addItemToCart: (item: ProductType) => void
 }
 
-function Product({ product, addItemToCart }: ProductIface) {
+function Product({ product }: ProductIface) {
+  const {addItemToCart} = useCart()
   return (
     <div data-testid='Product' className='Product'>
-      {/* <div>{product.id}</div> */}
       <div
         style={{
           background: `url("${product.thumbnail}")`,
