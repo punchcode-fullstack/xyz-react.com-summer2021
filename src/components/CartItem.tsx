@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faMinus, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { CartItemType } from "./CartItem.types";
 
 import "./CartItem.scss";
@@ -5,8 +7,42 @@ import "./CartItem.scss";
 import useCart from "../hooks/useCart";
 
 type CartItemProps = CartItemType & {
-  itemIndex: number;
+  itemIndex?: number;
 };
+
+function BtnDecrementQty({ id }: { id: string | number }) {
+  const {decrementCartItemQty: decrement} = useCart()
+  return (
+    <button
+      aria-label="decrement quantity"
+      onClick={() => decrement && decrement(id)}
+    >
+      <FontAwesomeIcon icon={faMinus} />
+    </button>
+  );
+}
+function BtnIncrementQty({ id }: { id: string | number }) {
+  const {incrementCartItemQty: increment} = useCart()
+  return (
+    <button
+      aria-label="increment quantity"
+      onClick={() => increment && increment(id)}
+    >
+      <FontAwesomeIcon icon={faMinus} />
+    </button>
+  );
+}
+function BtnRemove({ id }: { id: string | number }) {
+  const {removeFromCart: remove} = useCart()
+  return (
+    <button
+      aria-label="remove from cart"
+      onClick={() => remove && remove(id)}
+    >
+      <FontAwesomeIcon icon={faTimes} />
+    </button>
+  );
+}
 
 function CartItem({
   id,
@@ -16,12 +52,10 @@ function CartItem({
   qty,
   thumbnail,
 }: CartItemProps) {
-  const { decrementCartItemQty, incrementCartItemQty, removeFromCart } =
-    useCart();
   return (
     <div data-testid="CartItem" className="CartItem">
       <div className="left">
-        <div className="index">{itemIndex + 1}</div>
+        {itemIndex !== undefined && <div className="index">{itemIndex + 1}</div>}
         <div
           className="thumb"
           style={{
@@ -38,36 +72,9 @@ function CartItem({
           qty: {qty}
         </div>
         <div>
-          <button
-            aria-label="decrement quantity"
-            onClick={() => {
-              if (decrementCartItemQty) {
-                decrementCartItemQty(id);
-              }
-            }}
-          >
-            -
-          </button>
-          <button
-            aria-label="increment quantity"
-            onClick={() => {
-              if (incrementCartItemQty) {
-                incrementCartItemQty(id);
-              }
-            }}
-          >
-            +
-          </button>
-          <button
-            aria-label="remove from cart"
-            onClick={() => {
-              if (removeFromCart) {
-                removeFromCart(id);
-              }
-            }}
-          >
-            X
-          </button>
+          <BtnDecrementQty id={id} />
+          <BtnIncrementQty id={id} />
+          <BtnRemove id={id} />
         </div>
       </div>
     </div>
