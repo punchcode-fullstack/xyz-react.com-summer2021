@@ -7,6 +7,7 @@ function changeQty(
 ) {
   setCartItems((items) => {
     return items.map((i) => {
+      // eslint-disable-next-line
       let qty = eval(`${i.qty}${operation}1`);
       qty = operation === "-" && qty < 1 ? 1 : qty;
       return i.id === id ? { ...i, qty } : i;
