@@ -1,0 +1,8 @@
+.ProductList {
+  display: grid;
+  grid-template-columns: 300px 300px 300px 300px;
+  margin: 4rem auto;
+  width: 90%;
+  place-items: center;
+  grid-gap: 2rem;
+}
