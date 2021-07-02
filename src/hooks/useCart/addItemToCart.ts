@@ -1,27 +1,29 @@
 import type { CartItemType } from "../../components/CartItem.types";
 import type { Product as ProductType } from "../../components/Product.types";
 
-function _add(items: CartItemType[], item: ProductType) {
-  return [...items, { ...item, qty: 1 }];
+function _add(cartItems: CartItemType[], product: ProductType) {
+  return [...cartItems, { ...product, qty: 1 }];
 }
 
-function _find(items: CartItemType[], id: string | number) {
-  return items.find((item: CartItemType) => item.id === id);
+function _find(cartItems: CartItemType[], id: string | number) {
+  return cartItems.find((product: CartItemType) => product.id === id);
 }
 
-function _update(items: CartItemType[], item: ProductType) {
-  return items.map((existing: CartItemType) =>
-    existing.id === item.id ? { ...item, qty: existing.qty + 1 } : existing
+function _update(cartItems: CartItemType[], product: ProductType) {
+  return cartItems.map((existing: CartItemType) =>
+    existing.id === product.id
+      ? { ...product, qty: existing.qty + 1 }
+      : existing
   );
 }
 
 function addItemToCart(
-  item: ProductType,
+  product: ProductType,
   setCartItems: React.Dispatch<React.SetStateAction<CartItemType[]>>
 ) {
-  setCartItems((items) => {
-    const currentItem: CartItemType | undefined = _find(items, item.id);
-    return currentItem ? _update(items, item) : _add(items, item);
+  setCartItems((cartItems) => {
+    const currentItem: CartItemType | undefined = _find(cartItems, product.id);
+    return currentItem ? _update(cartItems, product) : _add(cartItems, product);
   });
 }
 

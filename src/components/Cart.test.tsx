@@ -1,49 +1,31 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 
-import App from '../App'
+import useCart from "../hooks/useCart";
+
 import Cart from "./Cart";
-import products from '../data/products.json'
 
+jest.mock("../hooks/useCart");
 
 describe("Cart", () => {
+  const mockCalculateCart = jest.fn()
+  
+  beforeEach(() => {
+    jest.clearAllMocks()
+    useCart.mockReturnValue({
+      cartItems: [],
+      calculateCart: mockCalculateCart.mockReturnValue(0),
+    });
+  });
   it("exists", () => {
     expect(typeof Cart).toBe("function");
   });
-  it("has class Cart", () => {
-    const ui = render(<App />);
-    const shopLink = ui.getByText("Cart");
-    shopLink.click()
-
-    expect(ui.getByTestId("Cart")).toHaveClass("Cart");
-  });
   it("starts empty", () => {
-    const ui = render(<App />);
-    const cartLink = ui.getByText("Cart");
-    cartLink.click(); // visit cart
+    render(<Cart />);
 
-    expect(ui.queryAllByTestId("CartItem").length).toBe(0);
-    expect(ui.getByLabelText("subtotal")).toHaveTextContent("0.00");
-    expect(ui.getByLabelText("item count")).toHaveTextContent('0');
+    expect(screen.getByTestId("Cart")).toHaveClass("Cart");
+    expect(screen.queryAllByTestId("CartItem").length).toBe(0);
+    expect(mockCalculateCart).toHaveBeenCalledTimes(1)
+    expect(screen.getByLabelText("subtotal")).toHaveTextContent("0.00");
+    expect(screen.getByLabelText("item count")).toHaveTextContent("0");
   });
-  it("updates the number of items in the cart when a new item is added", () => {
-    const product1 = products[0];
-    const ui = render(<App />);
-    
-    const shopLink = ui.getByText("XYZ Corporation");
-    shopLink.click()
-
-    const addToCartButtons = ui.getAllByRole("button");
-    const btnAddToCart = addToCartButtons[0]; // should be product1
-    const cartLink = ui.getByText("Cart");
-
-    btnAddToCart.click(); // add to cart
-    cartLink.click(); // visit cart
-
-    const cartItems = ui.getAllByTestId("CartItem");
-    expect(cartItems.length).toBe(1);
-
-    expect(ui.getByLabelText("subtotal")).toHaveTextContent(String(product1.price));
-    expect(ui.getByLabelText("item count")).toHaveTextContent('1');
-
-  })
 });

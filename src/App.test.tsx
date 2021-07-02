@@ -1,5 +1,9 @@
-import { render, screen } from '@testing-library/react'
+import { act, render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
+
+import Api from "./api";
+
+import products from "./data/products.json";
 
 import App from './App'
 
@@ -10,29 +14,35 @@ function renderUi() {
     </MemoryRouter>
   )
 }
-test('renders', () => {
-  renderUi()
-  const companyName = screen.getByText('XYZ Corporation')
-  expect(companyName).toBeInTheDocument()
-})
 
 describe('App', () => {
-  it('shows the Shop by default', () => {
-    const ui = renderUi()
-    const shop = ui.getByTestId('Shop')
-    expect(shop).toBeInTheDocument()
+  beforeEach(() => {
+    fetch.resetMocks();
+  });
+
+  it('shows the Shop by default', async () => {
+    fetch.mockResponseOnce(JSON.stringify(products))
+    const promise = Promise.resolve(products);
+    Api.getProducts = jest.fn(() => promise);
+
+    renderUi()
+    await act(() => promise);
+    expect(screen.getByTestId('Shop')).toBeInTheDocument()
   })
-  it('navigates correctly between pages', () => {
-    const ui = renderUi()
-    const cartLink = ui.getByText('Cart')
-
-    cartLink.click()
-    const cart = ui.getByTestId('Cart')
-    expect(cart).toBeInTheDocument()
-
-    const shopLink = ui.getByLabelText('shop')
-    shopLink.click()
-    const shop = ui.getByTestId('Shop')
-    expect(shop).toBeInTheDocument()
+  it('navigates correctly between pages', async () => {
+    fetch.mockResponseOnce(JSON.stringify(products))
+    const promise = Promise.resolve(products);
+    Api.getProducts = jest.fn(() => promise);
+  
+    renderUi()
+    await act(() => promise);
+    
+    screen.getByText('Cart').click()
+    await act(() => promise);
+    expect(screen.getByTestId('Cart')).toBeInTheDocument()
+    
+    screen.getByLabelText('shop').click()
+    await act(() => promise);
+    expect(screen.getByTestId('Shop')).toBeInTheDocument()
   })
 })
