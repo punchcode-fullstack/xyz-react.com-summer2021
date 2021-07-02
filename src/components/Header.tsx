@@ -1,7 +1,7 @@
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom';
 
-import SplashPage from './SplashPage'
-import Nav from './Nav'
+import SplashPage from './SplashPage';
+import Nav from './Nav';
 
 function Header() {
   return (
@@ -16,7 +16,7 @@ function Header() {
       </header>
       <Nav />
     </>
-  )
+  );
 }
-export { Header }
-export default Header
+export { Header };
+export default Header;
