@@ -5,6 +5,7 @@ import type { Product as ProductType } from "../../components/Product.types";
 
 import addItemToCart from './addItemToCart';
 import calculateCart from "./calculateCart";
+import checkout from './checkout'
 import decrement from "./decrement";
 import increment from "./increment";
 import removeFromCart from "./removeFromCart";
@@ -24,6 +25,7 @@ function CartProvider({ children }: { children: any }) {
         addItemToCart: (newItem: ProductType) => addItemToCart(newItem, setCartItems),
         calculateCart: () => calculateCart(cartItems),
         cartItems,
+        checkout: (data:any) => checkout(cartItems, data),
         decrementCartItemQty: (itemId: number | string) =>
           decrement(itemId, setCartItems),
         incrementCartItemQty: (itemId: number | string) =>
