@@ -28,7 +28,7 @@ function BtnIncrementQty({ id }: { id: string | number }) {
       aria-label="increment quantity"
       onClick={() => increment && increment(id)}
     >
-      <FontAwesomeIcon icon={faMinus} />
+      <FontAwesomeIcon icon={faPlus} />
     </button>
   );
 }
