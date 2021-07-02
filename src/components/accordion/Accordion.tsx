@@ -4,26 +4,14 @@ import Section from './Section';
 
 import './Accordion.scss';
 
-type accProps = {
-  width: string;
-};
+interface accProps {
+  width?: string | undefined;
+}
 
 function Accordion(props: accProps) {
-  const [active, setActive] = useState(1);
+  // const [active, setActive] = useState(1);
   const [showAll, setShowAll] = useState(false);
-  const accWidth = props.width ? props.width : '30%';
-
-  const activeHeading = {
-    color: 'orangered',
-    background: 'white',
-    border: '3px solid orangered',
-  };
-
-  const hiddenHeading = {
-    color: 'white',
-    background: 'orangered',
-    border: '3px solid orangered',
-  };
+  const accWidth = props.width ? props.width : '100%';
 
   function handleShowAll() {
     setShowAll(!showAll);
@@ -31,7 +19,7 @@ function Accordion(props: accProps) {
   }
 
   return (
-    <div className='Accordion' style={{ width: `${props.width}` }}>
+    <div className='Accordion' style={{ width: `${accWidth}` }}>
       {/*      
       <div>
         <h1
