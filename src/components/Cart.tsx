@@ -19,12 +19,14 @@ function Cart() {
         </h1>
         <h1 aria-label='item count'>(Items: {cartItems?.length ?? 0})</h1>
       </header>
-      <div className='cart-items'>
-        {cartItems?.map((item: CartItemType, i: number) => (
-          <CartItem key={item.id} {...item} itemIndex={i} />
-        ))}
+      <div className='container'>
+        <div className='cart-items'>
+          {cartItems?.map((item: CartItemType, i: number) => (
+            <CartItem key={item.id} {...item} itemIndex={i} />
+          ))}
+        </div>
+        <Checkout />
       </div>
-      <Checkout />
     </div>
   );
 }

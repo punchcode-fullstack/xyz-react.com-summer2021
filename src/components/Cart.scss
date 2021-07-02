@@ -1,4 +1,9 @@
 .Cart {
+  .container {
+    display: flex;
+    // margin: 0 auto;
+    justify-content: center;
+  }
   header {
     display: flex;
     justify-content: center;
@@ -21,6 +26,6 @@
   }
   .cart-items {
     width: 40%;
-    margin: 0 auto;
+    // margin: 0 auto;
   }
 }
