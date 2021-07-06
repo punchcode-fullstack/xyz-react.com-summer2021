@@ -4,6 +4,7 @@ import Section from './Section';
 
 import './Accordion.scss';
 
+<<<<<<< HEAD
 interface accProps {
   width?: string | undefined;
 }
@@ -12,6 +13,28 @@ function Accordion(props: accProps) {
   // const [active, setActive] = useState(1);
   const [showAll, setShowAll] = useState(false);
   const accWidth = props.width ? props.width : '100%';
+=======
+type accProps = {
+  width: string;
+};
+
+function Accordion(props: accProps) {
+  const [active, setActive] = useState(1);
+  const [showAll, setShowAll] = useState(false);
+  const accWidth = props.width ? props.width : '30%';
+
+  const activeHeading = {
+    color: 'orangered',
+    background: 'white',
+    border: '3px solid orangered',
+  };
+
+  const hiddenHeading = {
+    color: 'white',
+    background: 'orangered',
+    border: '3px solid orangered',
+  };
+>>>>>>> 7bbf43e (add accordion)
 
   function handleShowAll() {
     setShowAll(!showAll);
@@ -19,7 +42,11 @@ function Accordion(props: accProps) {
   }
 
   return (
+<<<<<<< HEAD
     <div className='Accordion' style={{ width: `${accWidth}` }}>
+=======
+    <div className='Accordion' style={{ width: `${props.width}` }}>
+>>>>>>> 7bbf43e (add accordion)
       {/*      
       <div>
         <h1

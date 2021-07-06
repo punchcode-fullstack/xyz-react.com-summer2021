@@ -3,7 +3,7 @@ import Accordion from './accordion/Accordion';
 function Checkout() {
   return (
     <div className='Checkout'>
-      <Accordion />
+      <Accordion width='100%' />
     </div>
   );
 }
